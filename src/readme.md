@@ -1,5 +1,8 @@
 # Movie API
 
+### Setup
+Run ./start.sh
+
 ### Endpoints
 List of all available endpoints
 - [Get all movies](#get-all-movies): GET /movies
