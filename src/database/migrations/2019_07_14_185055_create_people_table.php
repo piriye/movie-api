@@ -15,7 +15,7 @@ class CreatePeopleTable extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 80);
+            $table->string('name', 80)->unique();
             $table->float('height', 8, 2)->nullable();
             $table->float('mass', 8, 2)->nullable();
             $table->string('hair_color', 20);
@@ -26,7 +26,7 @@ class CreatePeopleTable extends Migration
             $table->string('homeworld', 255);
             $table->date('created');
             $table->date('edited');
-            $table->string('url', 255)->unique();
+            $table->string('url', 255);
             $table->timestamps();
         });
     }
