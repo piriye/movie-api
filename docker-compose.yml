@@ -1,0 +1,45 @@
+version: '3'
+services:
+    php:
+        container_name: movie_app
+        build:
+            context: .
+            dockerfile: image/php/Dockerfile
+        ports:
+            - 9000
+        volumes:
+            - ./src:/var/www/html
+        networks:
+            - main_network
+
+    nginx:
+        build: image/nginx
+        ports:
+            - 80
+        networks:
+            - main_network
+
+    mysql:
+        image: mysql
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_PASSWORD: "movie-app"
+            MYSQL_USER: "movie-app-user"
+            MYSQL_DATABASE: "movie-app"
+        ports:
+            - 3306
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+        networks:
+            - main_network
+
+    redis:
+        image: redis
+        ports:
+            - 6379
+        networks:
+            - main_network
+
+networks:
+    main_network:
+        driver: bridge
