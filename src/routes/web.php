@@ -18,5 +18,6 @@ $router->get('/', function () use ($router) {
 Route::group(['prefix' => 'movies'], function () {
     Route::get('/', 'MovieController@getMovieList');
     Route::post('/{id}/comments', 'CommentController@createComment');
+    Route::get('/{id}/comments', 'MovieController@getComments');
     Route::get('/{id}/people', 'PersonController@getPeople');
 });

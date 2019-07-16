@@ -23,7 +23,7 @@ class CreateMoviesTable extends Migration
             $table->date('release_date');
             $table->date('created');
             $table->date('edited');
-            $table->string('url', 255)->unique();
+            $table->string('url', 200)->unique();
             $table->timestamps();
         });
     }

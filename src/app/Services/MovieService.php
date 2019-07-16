@@ -49,4 +49,10 @@ class MovieService
             throw new MovieApiException($ex->getMessage(), ErrorCode::INTERNAL_ERROR);
         }
     }
+
+    public function getComments(int $movieId)
+    {
+        $movie = $this->movie->find($movieId);
+        return $movie->comments()->get();
+    }
 }

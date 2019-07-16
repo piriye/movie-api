@@ -21,8 +21,9 @@ class MovieController extends Controller
         return Response::success($movies, 'Successfully fetched movies');
     }
 
-    public function getMovieCharacters(Request $request, int $movieId)
+    public function getComments(int $movieId)
     {
-        $characters = $this->movieService->getMovieCharacters($movieId, $request->all());
+        $movies = $this->movieService->getComments($movieId);
+        return Response::success($movies, 'Successfully fetched movies');
     }
 }
