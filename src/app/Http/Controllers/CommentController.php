@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utilities\MovieApiException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Utilities\ErrorCode;
@@ -25,8 +26,12 @@ class CommentController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $responseData = $this->commentService->createComment($movieId, $requestData);
-            return Response::success($responseData, 'Successfully created comment');
+            try {
+                $responseData = $this->commentService->createComment($movieId, $requestData);
+                return Response::success($responseData, 'Successfully created comment');
+            } catch (MovieApiException $ex) {
+                return Response::error($ex->getMessage(), ErrorCode::BAD_REQUEST);
+            }
         } else {
             $errorMessage = $validator->messages()->first();
             return Response::error(ErrorCode::INVALID_INPUT, $errorMessage, null);

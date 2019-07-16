@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "8a525ab0-ae5a-4748-915b-d224f3ad8ce2",
+		"name": "Movie API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add comment to a movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"message\": \"Some random comment about New Hope\"\n}"
+				},
+				"url": {
+					"raw": "0.0.0.0:32794/movies/1/comments",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "32794",
+					"path": [
+						"movies",
+						"1",
+						"comments"
+					]
+				},
+				"description": "Adds a comment for a movie"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "0.0.0.0:32794/movies",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "32794",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all characters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "0.0.0.0:32794/movies/1/people?order_by=name:asc",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "32794",
+					"path": [
+						"movies",
+						"1",
+						"people"
+					],
+					"query": [
+						{
+							"key": "filters",
+							"value": "gender:male",
+							"disabled": true
+						},
+						{
+							"key": "order_by",
+							"value": "name:asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get comments for a movie",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "0.0.0.0:32808/movies/1/comments",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "32808",
+					"path": [
+						"movies",
+						"1",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

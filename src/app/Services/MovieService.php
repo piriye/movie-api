@@ -50,9 +50,19 @@ class MovieService
         }
     }
 
+    /**
+     * @param int $movieId
+     * @return mixed
+     * @throws MovieApiException
+     */
     public function getComments(int $movieId)
     {
         $movie = $this->movie->find($movieId);
+
+        if (empty($movie)) {
+            throw new MovieApiException('Movie does not exist', ErrorCode::INTERNAL_ERROR);
+        }
+
         return $movie->comments()->get();
     }
 }

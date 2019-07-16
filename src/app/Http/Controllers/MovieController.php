@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\MovieService;
 use App\Helpers\ResponseHelper as Response;
+use App\Utilities\ErrorCode;
+use App\Utilities\MovieApiException;
 
 class MovieController extends Controller
 {
@@ -23,7 +24,11 @@ class MovieController extends Controller
 
     public function getComments(int $movieId)
     {
-        $movies = $this->movieService->getComments($movieId);
-        return Response::success($movies, 'Successfully fetched movies');
+        try {
+            $movies = $this->movieService->getComments($movieId);
+            return Response::success($movies, 'Successfully fetched comments');
+        } catch (MovieApiException $ex) {
+            return Response::error($ex->getMessage(), ErrorCode::BAD_REQUEST);
+        }
     }
 }
