@@ -15,7 +15,7 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('episode_id');
+            $table->integer('episode_id')->unique();
             $table->string('title', 80);
             $table->text('opening_crawl');
             $table->string('director', 60);
@@ -23,7 +23,7 @@ class CreateMoviesTable extends Migration
             $table->date('release_date');
             $table->date('created');
             $table->date('edited');
-            $table->string('url', 200)->unique();
+            $table->string('url', 255);
             $table->timestamps();
         });
     }
